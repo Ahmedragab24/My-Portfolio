@@ -6,6 +6,7 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import EmailIcon from "@mui/icons-material/Email";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import { Button } from "@/components/ui/button";
 import DownloadingIcon from "@mui/icons-material/Downloading";
@@ -55,7 +56,7 @@ const Hero = () => {
       interactivity: {
         events: {
           onClick: {
-            enable: true,
+            enable: false,
             mode: "push",
           },
           onHover: {
@@ -98,7 +99,7 @@ const Hero = () => {
           density: {
             enable: true,
           },
-          value: 60,
+          value: 90,
         },
         opacity: {
           value: 0.5,
@@ -182,6 +183,10 @@ const Hero = () => {
 
               <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
                 <GitHubIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
+              </Link>
+
+              <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+                <EmailIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
               </Link>
             </div>
           </div>

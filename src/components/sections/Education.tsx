@@ -26,7 +26,7 @@ const steps: Step[] = [
     link: "/",
   },
   {
-    title: "Computer Science",
+    title: "Computer Science CS50",
     history: "From 2020 to 2022",
     description:
       "Harvard University degree in computer science, CS50 curriculum in computer science integrated",

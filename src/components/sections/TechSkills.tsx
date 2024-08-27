@@ -41,7 +41,7 @@ const TechSkills = () => {
               <div>
                 <h2 className="md:text-xl">Computer Science</h2>
                 <h3 className="max-w-[20rem] text-muted-foreground text-sm md:text-lg">
-                  Algorithms - Data structure - RAM control - Opp - Design
+                  Algorithms - Data structure - RAM control - Oop - Design
                   Patterns - Solid Principles
                 </h3>
               </div>
@@ -63,7 +63,7 @@ const TechSkills = () => {
           <div className="center">
             <div className="skills--center bg-secondary">
               <Image
-                className="rounded-[38%] pt-5 px-5 "
+                className="rounded-[47%] pt-5 px-5 "
                 width={340}
                 height={640}
                 src="https://res.cloudinary.com/dk4yvlwr0/image/upload/v1723562110/me2_xnxgvr.png"

@@ -18,7 +18,7 @@ const Experience = () => {
         </h2>
         <Timeline position="alternate-reverse">
           <TimelineItem>
-            <TimelineSeparator className="h-32">
+            <TimelineSeparator className="md:h-36">
               <TimelineDot className="bg-primary" />
               <TimelineConnector />
             </TimelineSeparator>
@@ -33,7 +33,7 @@ const Experience = () => {
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
-            <TimelineSeparator className="h-32">
+            <TimelineSeparator className="md:h-36">
               <TimelineDot className="bg-primary" />
               <TimelineConnector />
             </TimelineSeparator>
@@ -48,26 +48,12 @@ const Experience = () => {
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
-            <TimelineSeparator className="h-32">
+            <TimelineSeparator className="md:h-36">
               <TimelineDot className="bg-primary" />
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <h2 className="text-lg md:text-xl">Eat</h2>
-              <p className="text-[.75rem] md:text-[1rem] font-light text-muted-foreground">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
-                architecto. Dicta voluptates cupiditate pariatur? Ipsa dolorum
-                earum perferendis commodi asperiores molestiae aliquam
-                excepturi, sunt omnis aut error ut mollitia illo.
-              </p>
-            </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot className="bg-primary" />
-            </TimelineSeparator>
-            <TimelineContent>
-              <h2 className="text-lg md:text-xl">Eat</h2>
+              <h2 className="text-lg md:text-xl">Orkend company</h2>
               <p className="text-[.75rem] md:text-[1rem] font-light text-muted-foreground">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
                 architecto. Dicta voluptates cupiditate pariatur? Ipsa dolorum

@@ -1,11 +1,8 @@
 import * as React from "react";
 import { Button } from "../ui/button";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea, CardActions } from "@mui/material";
-import { Code, Eye } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Eye, Code } from "lucide-react";
 
 const Projects = () => {
   return (
@@ -42,119 +39,142 @@ const Projects = () => {
             </li>
           </ul>
 
-          <div className="flex flex-col justify-center items-center gap-y-8 md:flex-row gap-x-8">
-            <Card
-              sx={{
-                maxWidth: 445,
-                backgroundColor: "hsl(var(--secondary))",
-                borderRadius: "2rem",
-                zIndex: "10",
-                boxShadow: "1px 1px 7px hsl(var(--primary))",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  className="h-[200px]"
-                  component="img"
-                  height="90"
-                  image="https://cdn.pixabay.com/photo/2023/09/04/17/48/flamingos-8233303_1280.jpg"
-                  alt="green iguana"
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h6"
-                    component="div"
-                    className="text-foreground"
+          <div className="flex flex-col md:flex-row justify-center xl:justify-between items-center flex-wrap gap-x-10 xl:gap-x-0 gap-y-10">
+            <article className="card__article relative overflow-hidden rounded-2xl shadow-2xl duration-500 cursor-pointer">
+              <Image
+                width={280}
+                height={280}
+                loading="lazy"
+                src="https://res.cloudinary.com/dk4yvlwr0/image/upload/v1724425856/dfg_xwldda.jpg"
+                alt="image"
+                className="card__img w-[370px] md:w-[420px] rounded-2xl"
+              />
+              <div className="card__data w-[90%] bg-foreground py-1 px-2 md:py-3 md:px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500 ">
+                <h2 className="text-md font-medium text-background ml-3 mb-1">
+                  The Great Path
+                </h2>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
                   >
-                    Lizard
-                  </Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="sm" variant={"ghost"} className="text-primary">
-                  View Demo <Eye className="mx-2" />
-                </Button>
-                <Button size="sm" variant={"ghost"} className="text-primary">
-                  View Code <Code className="mx-2" />
-                </Button>
-              </CardActions>
-            </Card>
-            <Card
-              sx={{
-                maxWidth: 445,
-                backgroundColor: "hsl(var(--secondary))",
-                borderRadius: "2rem",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  className="h-[200px]"
-                  component="img"
-                  height="90"
-                  image="https://cdn.pixabay.com/photo/2023/09/04/17/48/flamingos-8233303_1280.jpg"
-                  alt="green iguana"
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    className="text-foreground"
+                    View Demo
+                    <Code className="ms-1" size={15} />
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
                   >
-                    Lizard
-                  </Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="sm">Share</Button>
-              </CardActions>
-            </Card>
-            <Card
-              sx={{
-                maxWidth: 445,
-                backgroundColor: "hsl(var(--secondary))",
-                borderRadius: "2rem",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  className="h-[200px]"
-                  component="img"
-                  height="90"
-                  image="https://cdn.pixabay.com/photo/2023/09/04/17/48/flamingos-8233303_1280.jpg"
-                  alt="green iguana"
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    className="text-foreground"
+                    View Code
+                    <Eye className="ms-1" size={15} />
+                  </Button>
+                </Link>
+              </div>
+            </article>
+
+            <article className="card__article relative overflow-hidden rounded-2xl shadow-2xl duration-500 cursor-pointer">
+              <Image
+                width={280}
+                height={280}
+                loading="lazy"
+                src="https://res.cloudinary.com/dk4yvlwr0/image/upload/v1724425856/dfg_xwldda.jpg"
+                alt="image"
+                className="card__img w-[370px] md:w-[420px] rounded-2xl"
+              />
+              <div className="card__data  text-left w-[90%] bg-foreground py-2 px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500 ">
+                <h2 className="text-md font-medium text-background ml-3 mb-1">
+                  The Great Path
+                </h2>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
                   >
-                    Lizard
-                  </Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="sm">Share</Button>
-              </CardActions>
-            </Card>
+                    View Demo
+                    <Code className="mx-1" />
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
+                  >
+                    View Code
+                    <Eye className="mx-1" />
+                  </Button>
+                </Link>
+              </div>
+            </article>
+
+            <article className="card__article relative overflow-hidden rounded-2xl shadow-2xl duration-500 cursor-pointer">
+              <Image
+                width={280}
+                height={280}
+                loading="lazy"
+                src="https://res.cloudinary.com/dk4yvlwr0/image/upload/v1724425856/dfg_xwldda.jpg"
+                alt="image"
+                className="card__img w-[370px] md:w-[420px] rounded-2xl"
+              />
+              <div className="card__data  text-left w-[90%] bg-foreground py-2 px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500 ">
+                <h2 className="text-md font-medium text-background ml-3 mb-1">
+                  The Great Path
+                </h2>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
+                  >
+                    View Demo
+                    <Code className="mx-1" />
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
+                  >
+                    View Code
+                    <Eye className="mx-1" />
+                  </Button>
+                </Link>
+              </div>
+            </article>
+
+            <article className="card__article relative overflow-hidden rounded-2xl shadow-2xl duration-500 cursor-pointer">
+              <Image
+                width={280}
+                height={280}
+                loading="lazy"
+                src="https://res.cloudinary.com/dk4yvlwr0/image/upload/v1724425856/dfg_xwldda.jpg"
+                alt="image"
+                className="card__img w-[370px] md:w-[420px] rounded-2xl"
+              />
+              <div className="card__data  text-left w-[90%] bg-foreground py-2 px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500 ">
+                <h2 className="text-md font-medium text-background ml-3 mb-1">
+                  The Great Path
+                </h2>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
+                  >
+                    View Demo
+                    <Code className="mx-1" />
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button
+                    variant={"link"}
+                    className="text-muted hover:text-primary"
+                  >
+                    View Code
+                    <Eye className="mx-1" />
+                  </Button>
+                </Link>
+              </div>
+            </article>
           </div>
         </div>
       </div>

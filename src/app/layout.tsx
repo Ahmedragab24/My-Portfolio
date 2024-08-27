@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import NavBar from "@/components/navBar/NavBar";
 import Footer from "@/components/footer/Footer";
+import ScrollUp from "@/components/ui/scrollUp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         >
           <NavBar />
           {children}
+          <ScrollUp />
           <Footer />
         </ThemeProvider>
       </body>
