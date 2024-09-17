@@ -12,16 +12,14 @@ import { Button } from "@/components/ui/button";
 import DownloadingIcon from "@mui/icons-material/Downloading";
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadAll } from "@tsparticles/all";
 import {
   type Container,
   type ISourceOptions,
   MoveDirection,
   OutMode,
 } from "@tsparticles/engine";
-// import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
-// import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
-// import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
+import { loadSlim } from "@tsparticles/slim";
 
 const Hero = () => {
   const [init, setInit] = useState(false);
@@ -41,9 +39,7 @@ const Hero = () => {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
+  const particlesLoaded = async (container?: Container): Promise<void> => {};
 
   const options: ISourceOptions = useMemo(
     () => ({
