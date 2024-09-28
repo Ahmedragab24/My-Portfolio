@@ -12,10 +12,10 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { ModeToggle } from "../ui/modeToggle";
 import Link from "next/link";
 import Fade from "@mui/material/Fade";
+import CodeOffIcon from "@mui/icons-material/CodeOff";
 
 interface Menu {
   Title: string;
@@ -47,16 +47,16 @@ const NavLink: Menu[] = [
     Url: "./#SoftSkills",
   },
   {
+    Title: "Projects",
+    Url: "./#Projects",
+  },
+  {
     Title: "Educations",
     Url: "./#Education",
   },
   {
     Title: "Experience",
     Url: "./#Experience",
-  },
-  {
-    Title: "Projects",
-    Url: "./#Projects",
   },
 ];
 
@@ -85,11 +85,11 @@ function NavBar() {
   return (
     <AppBar
       position="sticky"
-      className="!bg-primary z-50 border-b-4 border-primary shadow-sm shadow-gray-700 rounded-br-[2rem] rounded-bl-[2rem] sticky "
+      className="!bg-primary z-50 border-b-4 border-primary shadow-sm shadow-gray-700 rounded-br-[2rem] rounded-bl-[2rem] sticky overflow-hidden"
     >
       <Container className="container">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <CodeOffIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -99,11 +99,10 @@ function NavBar() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontWeight: 700,
-              letterSpacing: ".3rem",
               color: "inherit",
             }}
           >
-            LOGO
+            Ahmed
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -180,7 +179,7 @@ function NavBar() {
               </Menu>
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <CodeOffIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -193,7 +192,7 @@ function NavBar() {
               fontWeight: 700,
             }}
           >
-            LOGO
+            Ahmed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {MenuLink.map(({ Title, Url }) => (

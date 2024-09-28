@@ -9,7 +9,7 @@ const ScrollUp = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollUpElement = document.getElementById("scroll-up");
-      if (window.scrollY >= 250) {
+      if (window.scrollY >= 500) {
         if (scrollUpElement) {
           scrollUpElement.classList.add("show-scroll");
         }
@@ -30,6 +30,7 @@ const ScrollUp = () => {
 
   return (
     <Button
+      variant={"secondary"}
       size={"icon"}
       className="scrollup"
       id="scroll-up"

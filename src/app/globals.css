@@ -532,7 +532,7 @@
 
 /*=============== CARD ===============*/
 .card__article:hover {
-  box-shadow: 0 0 30px hsl(var(--primary)) !important;
+  box-shadow: 0 0 20px hsl(var(--primary)) !important;
   transition: 500ms;
   -webkit-transition: 500ms;
   -moz-transition: 500ms;
@@ -574,6 +574,7 @@
     height: 35px;
     right: 3rem;
     bottom: -20%;
+    border: 1px solid hsl(var(--primary));
   }
 }
 

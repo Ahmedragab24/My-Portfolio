@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import NavBar from "@/components/navBar/NavBar";
 import Footer from "@/components/footer/Footer";
 import ScrollUp from "@/components/ui/scrollUp";
+import StoreProvider from "@/providers/StoreProvider";
+import ParticlesComponent from "@/components/ui/Particles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,17 +23,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NavBar />
-          {children}
-          <ScrollUp />
-          <Footer />
-        </ThemeProvider>
+        <StoreProvider>
+          <ParticlesComponent />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NavBar />
+            {children}
+            <ScrollUp />
+            <Footer />
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,0 +1,21 @@
+.embla {
+  overflow: hidden;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  --webkit-user-select: none;
+}
+
+.embla__slide {
+  position: relative;
+  min-width: 100%;
+  padding: 10px;
+  background-color: #ddd;
+  text-align: center;
+}

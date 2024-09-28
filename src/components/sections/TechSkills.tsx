@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import CodeIcon from "@mui/icons-material/Code";
@@ -6,19 +8,28 @@ import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import HtmlIcon from "@mui/icons-material/Html";
 import CssIcon from "@mui/icons-material/Css";
+import { motion } from "framer-motion";
 
 const TechSkills = () => {
   return (
     <section
-      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem]"
+      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
       id="TechSkills"
     >
       <div className="container">
-        <h2 className="text-center text:xl md:text-2xl mb-20 w-[12rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]">
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text:xl md:text-2xl mb-20 w-[12rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+        >
           Technical Skills
-        </h2>
-        <div className="flex flex-col justify-center gap-y-12 items-center md:flex-row      md:justify-between">
-          <div
+        </motion.div>
+        <div className="flex flex-col justify-center gap-y-12 items-center md:flex-row  md:justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             dir="Rtl"
             className="left flex flex-col justify-center items-center space-y-5 md:space-y-14"
           >
@@ -58,9 +69,14 @@ const TechSkills = () => {
                 </h3>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="center">
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="center"
+          >
             <div className="skills--center bg-secondary">
               <Image
                 className="rounded-[47%] pt-5 px-5 "
@@ -70,9 +86,12 @@ const TechSkills = () => {
                 alt="skills"
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             dir="Ltr"
             className="right flex flex-col justify-center items-center space-y-5 md:space-y-14"
           >
@@ -113,7 +132,7 @@ const TechSkills = () => {
                 </h3>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

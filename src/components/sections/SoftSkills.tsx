@@ -22,74 +22,87 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { motion } from "framer-motion";
 
 const SoftSkills = () => {
   return (
     <section
-      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem]"
+      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
       id="SoftSkills"
     >
       <div className="container">
-        <h2 className="text-center text:xl md:text-2xl mb-20 w-[9rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]">
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text:xl md:text-2xl mb-20 w-[9rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+        >
           Soft Skills
-        </h2>
+        </motion.div>
 
         <div className="flex justify-center items-center text-center">
           <Box sx={{ width: 950, fontSize: "4rem", position: "relative" }}>
             <Grid container justifyContent="center" className="sm:mb-16">
-              <Grid item className="sm:space-x-11">
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                      <Handshake className="mx-2" />
-                      Effective Communication
-                    </h2>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        <Handshake className="mx-2 inline" />
+              <Grid item>
+                <motion.div
+                  className="sm:space-x-11"
+                  initial={{ opacity: 0, y: -100 }} // بدء الحركة من الأعلى
+                  whileInView={{ opacity: 1, y: 0 }} // الانتقال إلى مكانه الطبيعي
+                  transition={{ duration: 0.7 }} // تحديد مدة الحركة
+                >
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
+                        <Handshake className="mx-2" />
                         Effective Communication
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        The ability to clearly articulate ideas and suggestions,
-                        whether in writing or orally. Ability to actively listen
-                        and understand customer and team members&apos;
-                        requirements.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </h2>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          <Handshake className="mx-2 inline" />
+                          Effective Communication
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          The ability to clearly articulate ideas and
+                          suggestions, whether in writing or orally. Ability to
+                          actively listen and understand customer and team
+                          members&apos; requirements.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Continue</AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
 
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                      <GroupsIcon className="mx-2" />
-                      Teamwork & collaboration
-                    </h2>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <GroupsIcon className="mx-2" />
                         Teamwork & collaboration
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Ability to work effectively with other developers,
-                        designers, and project managers. Understand the
-                        importance of cooperation in achieving common goals.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </h2>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          <GroupsIcon className="mx-2" />
+                          Teamwork & collaboration
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Ability to work effectively with other developers,
+                          designers, and project managers. Understand the
+                          importance of cooperation in achieving common goals.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Continue</AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </motion.div>
               </Grid>
             </Grid>
 
@@ -104,60 +117,72 @@ const SoftSkills = () => {
                 className="sm:space-y-10 flex flex-col justify-center items-center sm:justify-start sm:items-start"
               >
                 <Grid item>
-                  <AlertDialog>
-                    <AlertDialogTrigger>
-                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                        <Bug className="mx-2" />
-                        Problem Solving
-                      </h2>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          <Bug className="mx-2 inline" />
+                  <motion.div
+                    initial={{ opacity: 0, x: -100 }} // بدء الحركة من اليسار
+                    whileInView={{ opacity: 1, x: 0 }} // الانتقال إلى مكانه الطبيعي
+                    transition={{ duration: 0.8 }} // تحديد مدة الحركة
+                  >
+                    <AlertDialog>
+                      <AlertDialogTrigger>
+                        <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
+                          <Bug className="mx-2" />
                           Problem Solving
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Critical and analytical thinking to deal with
-                          programming challenges and unexpected problems.
-                          Ability to research and discover appropriate solutions
-                          when faced with technical obstacles.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                        </h2>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            <Bug className="mx-2 inline" />
+                            Problem Solving
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Critical and analytical thinking to deal with
+                            programming challenges and unexpected problems.
+                            Ability to research and discover appropriate
+                            solutions when faced with technical obstacles.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </motion.div>
                 </Grid>
 
                 <Grid item>
-                  <AlertDialog>
-                    <AlertDialogTrigger className="px-14">
-                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                        <AvTimerIcon className="mx-2" />
-                        Time management
-                      </h2>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
+                  <motion.div
+                    initial={{ opacity: 0, x: -100 }} // بدء الحركة من اليسار
+                    whileInView={{ opacity: 1, x: 0 }} // الانتقال إلى مكانه الطبيعي
+                    transition={{ duration: 1 }} // تحديد مدة الحركة
+                  >
+                    <AlertDialog>
+                      <AlertDialogTrigger className="px-14">
+                        <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <AvTimerIcon className="mx-2" />
                           Time management
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Ability to effectively manage time to meet deadlines.
-                          Priority in distributing tasks and working on the most
-                          important tasks first.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                        </h2>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            <AvTimerIcon className="mx-2" />
+                            Time management
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Ability to effectively manage time to meet
+                            deadlines. Priority in distributing tasks and
+                            working on the most important tasks first.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </motion.div>
                 </Grid>
               </Grid>
 
@@ -357,118 +382,137 @@ const SoftSkills = () => {
                 className="sm:space-y-10 flex flex-col justify-center items-center sm:justify-end sm:items-end"
               >
                 <Grid item>
-                  <AlertDialog>
-                    <AlertDialogTrigger>
-                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                        <LocalLibraryIcon className="mx-2" />
-                        Continuous Learning
-                      </h2>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
+                  <motion.div
+                    initial={{ opacity: 0, x: 100 }} // بدء الحركة من اليمين
+                    whileInView={{ opacity: 1, x: 0 }} // الانتقال إلى مكانه الطبيعي
+                    transition={{ duration: 0.8 }} // تحديد مدة الحركة
+                  >
+                    <AlertDialog>
+                      <AlertDialogTrigger>
+                        <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <LocalLibraryIcon className="mx-2" />
                           Continuous Learning
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Passion for learning new technologies and keeping
-                          abreast of continuous updates in the field of web
-                          development. Prepare to continuously develop your
-                          skills and follow the latest trends in front-end
-                          development.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                        </h2>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            <LocalLibraryIcon className="mx-2" />
+                            Continuous Learning
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Passion for learning new technologies and keeping
+                            abreast of continuous updates in the field of web
+                            development. Prepare to continuously develop your
+                            skills and follow the latest trends in front-end
+                            development.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </motion.div>
                 </Grid>
 
                 <Grid item>
-                  <AlertDialog>
-                    <AlertDialogTrigger className="px-14">
-                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                        <SettingsSuggestIcon className="mx-2" />
-                        Attention To Detail
-                      </h2>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>
+                  <motion.div
+                    initial={{ opacity: 0, x: 100 }} // بدء الحركة من اليمين
+                    whileInView={{ opacity: 1, x: 0 }} // الانتقال إلى مكانه الطبيعي
+                    transition={{ duration: 1 }} // تحديد مدة الحركة
+                  >
+                    <AlertDialog>
+                      <AlertDialogTrigger className="px-14">
+                        <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <SettingsSuggestIcon className="mx-2" />
                           Attention To Detail
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Ability to detect small errors that may affect the
-                          user experience. Ensure that high quality and flawless
-                          work is provided.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                        </h2>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            <SettingsSuggestIcon className="mx-2" />
+                            Attention To Detail
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Ability to detect small errors that may affect the
+                            user experience. Ensure that high quality and
+                            flawless work is provided.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </motion.div>
                 </Grid>
               </Grid>
             </Grid>
 
             <Grid container justifyContent="center" className="sm:mt-16">
-              <Grid item className="sm:space-x-11">
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2">
-                      <InsightsIcon className="mx-2" />
-                      Resilience & Adaptation
-                    </h2>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
+              <Grid item>
+                <motion.div
+                  className="sm:space-x-11"
+                  initial={{ opacity: 0, y: 100 }} // بدء الحركة من الأسفل
+                  whileInView={{ opacity: 1, y: 0 }} // الانتقال إلى مكانه الطبيعي
+                  transition={{ duration: 0.7 }} // تحديد مدة الحركة
+                >
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <InsightsIcon className="mx-2" />
                         Resilience & Adaptation
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Ability to adapt to changes in projects or tools used.
-                        Willingness to work in changing environments and handle
-                        diverse tasks.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </h2>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          <InsightsIcon className="mx-2" />
+                          Resilience & Adaptation
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Ability to adapt to changes in projects or tools used.
+                          Willingness to work in changing environments and
+                          handle diverse tasks.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Continue</AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
 
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80px-4 px-4 py-2">
-                      <EmojiObjectsIcon className="mx-2" />
-                      Creativity & Excellence
-                    </h2>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <EmojiObjectsIcon className="mx-2" />
                         Creativity & Excellence
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Ability to think outside the box and provide innovative
-                        solutions. Develop attractive user interfaces that are
-                        simple to use.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
+                      </h2>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          <EmojiObjectsIcon className="mx-2" />
+                          Creativity & Excellence
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Ability to think outside the box and provide
+                          innovative solutions. Develop attractive user
+                          interfaces that are simple to use.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Continue</AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </motion.div>
               </Grid>
             </Grid>
           </Box>

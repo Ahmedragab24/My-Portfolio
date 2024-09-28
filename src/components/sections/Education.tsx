@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -7,6 +9,7 @@ import { StepConnector, Typography } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
 import CodeIcon from "@mui/icons-material/Code";
 import { Button } from "../ui/button";
+import { motion } from "framer-motion";
 
 interface Step {
   title: string;
@@ -38,15 +41,24 @@ const steps: Step[] = [
 const Education = () => {
   return (
     <section
-      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem]"
+      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
       id="Education"
     >
       <div className="container">
-        <h2 className="text-center text:xl md:text-2xl mb-20 w-[9rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]">
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text:xl md:text-2xl mb-20 w-[9rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+        >
           Education
-        </h2>
+        </motion.div>
 
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <Box sx={{ width: "100%" }}>
             <Stepper
               activeStep={3}
@@ -73,7 +85,7 @@ const Education = () => {
               ))}
             </Stepper>
           </Box>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
