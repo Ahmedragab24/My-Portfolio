@@ -9,8 +9,12 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
 
 const Contact = () => {
+  const lang = useAppSelector((state: RootState) => state.language.lang);
+
   return (
     <section className="py-28 overflow-hidden" id="Contact">
       <div className="container">
@@ -18,9 +22,9 @@ const Contact = () => {
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center text:xl md:text-2xl mb-20 w-[9.55rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+          className="text-center text:xl md:text-2xl mb-20 w-fit px-4 mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
         >
-          Contact Me
+          {lang == "English" ? "Contact Me" : "تواصل معي"}
         </motion.div>
         <div className="container mx-auto px-5">
           <div className="mb-12 flex w-full flex-col text-center">
@@ -30,9 +34,9 @@ const Contact = () => {
               transition={{ duration: 0.7 }}
               className="mx-auto text-base leading-relaxed lg:w-2/3"
             >
-              Feel free to reach out to us! Whether you have a question,
-              feedback, or a collaboration proposal, we&apos;d love to hear from
-              you.
+              {lang == "English"
+                ? "Feel free to contact me! Whether you have a question, comment, or collaboration suggestion, I&apos;d love to hear from you."
+                : "لا تتردد في الاتصال بي! سواء كان لديك سؤال أو تعليق أو اقتراح للتعاون، يسعدني أن أسمع منك."}
             </motion.div>
           </div>
 
@@ -51,13 +55,13 @@ const Contact = () => {
                     id="name"
                     name="name"
                     className="peer w-full rounded border border-primary bg-secondary bg-opacity-40 py-1 px-3 text-base leading-8 text-muted-foreground placeholder-transparent outline-none transition-colors duration-200 ease-in-out focus:border-primary focus:bg-input focus:ring-2 focus:ring-primary"
-                    placeholder="Name"
+                    placeholder={lang == "English" ? "Name" : "الأسم"}
                   />
                   <label
                     htmlFor="name"
                     className="absolute left-3 -top-6 bg-transparent text-sm leading-7 text-primary transition-all peer-placeholder-shown:left-3 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-focus:left-3 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-primary"
                   >
-                    Name
+                    {lang == "English" ? "Name" : "الأسم"}
                   </label>
                 </motion.div>
               </div>
@@ -74,13 +78,15 @@ const Contact = () => {
                     id="email"
                     name="email"
                     className="peer w-full rounded border border-primary bg-secondary bg-opacity-40 py-1 px-3 text-base leading-8 text-gray-100 placeholder-transparent outline-none transition-colors duration-200 ease-in-out focus:border-primary focus:bg-input focus:ring-2 focus:ring-primary"
-                    placeholder="Email"
+                    placeholder={
+                      lang == "English" ? "Email" : "البريد الإلكتروني"
+                    }
                   />
                   <label
                     htmlFor="email"
                     className="absolute left-3 -top-6 bg-transparent text-sm leading-7 text-primary transition-all peer-placeholder-shown:left-3 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-focus:left-3 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-primary"
                   >
-                    Email
+                    {lang == "English" ? "Email" : "البريد الإلكتروني"}
                   </label>
                 </motion.div>
               </div>
@@ -96,13 +102,13 @@ const Contact = () => {
                     id="message"
                     name="message"
                     className="peer h-32 w-full resize-none rounded border border-primary bg-secondary  bg-opacity-40 py-1 px-3 text-base leading-6 text-gray-100 placeholder-transparent outline-none transition-colors duration-200 ease-in-out focus:border-primary focus:bg-input focus:ring-2 focus:ring-primary"
-                    placeholder="Message"
+                    placeholder={lang == "English" ? "Massage" : "الرسالة"}
                   ></textarea>
                   <label
                     htmlFor="message"
                     className="absolute left-3 -top-6 bg-transparent text-sm leading-7 text-primary transition-all peer-placeholder-shown:left-3 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-focus:left-3 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-primary"
                   >
-                    Message
+                    {lang == "English" ? "Massage" : "الرسالة"}
                   </label>
                 </motion.div>
               </div>
@@ -113,7 +119,9 @@ const Contact = () => {
                 transition={{ duration: 1 }}
                 className="mx-auto p-2"
               >
-                <Button size={"lg"}>Send Massage</Button>
+                <Button size={"lg"}>
+                  {lang == "English" ? "Send Massage" : "أرسال الرسالة"}
+                </Button>
               </motion.div>
 
               {/* <!-- footer --> */}
@@ -124,28 +132,44 @@ const Contact = () => {
                 className="mt-8 w-full border-t border-gray-700 p-2 pt-8 text-center"
               >
                 <p className="my-3  leading-normal">
-                  <span className="text-primary">Ahmed Ragab</span>
+                  <span className="text-primary">
+                    {lang == "English" ? "Ahmed Elmadany" : "أحمد المدني"}
+                  </span>
                   <br />
-                  Front-end Developer
+                  {lang == "English"
+                    ? "Front-end Developer"
+                    : "مطور الوجهات الامامية"}
                 </p>
                 <div className="inline-flex space-x-3">
-                  <Link href="./">
+                  <Link
+                    href="https://www.facebook.com/EngAhmedRagab24/"
+                    target="_blank"
+                  >
                     <FacebookOutlinedIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
                   </Link>
 
-                  <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+                  <Link
+                    href="https://api.whatsapp.com/send?phone=201228317491&text=Hello, more information!"
+                    target="_blank"
+                  >
                     <WhatsAppIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
                   </Link>
 
-                  <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+                  <Link
+                    href="https://www.linkedin.com/in/ahmed-ragab-558a31209"
+                    target="_blank"
+                  >
                     <LinkedInIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
                   </Link>
 
-                  <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+                  <Link href="https://github.com/Ahmedragab24" target="_blank">
                     <GitHubIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
                   </Link>
 
-                  <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+                  <Link
+                    href="mailto:ahmedkavo17@gmail.com?subject=Subject%20Here&body=Message%20content%20here"
+                    target="_blank"
+                  >
                     <EmailIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
                   </Link>
                 </div>

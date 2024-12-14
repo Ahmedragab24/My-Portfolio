@@ -4,12 +4,12 @@ import * as React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { Eye, Code, Minus } from "lucide-react";
+import { Eye, Code } from "lucide-react";
 import { ICategories, Iproject } from "@/interfaces";
 import {
   useGetCategoriesQuery,
   useGetProjectsQuery,
-} from "@/store/features/api/apiSlice";
+} from "@/store/api/apiSlice";
 import { Skeleton } from "@/components/ui/skeleton";
 import ErrorMessage from "../ui/ErrorMessage";
 import {
@@ -20,6 +20,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { motion } from "framer-motion";
+import { useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
 
 const Projects = () => {
   const { isLoading, isSuccess, isError, error, data } =
@@ -39,6 +41,11 @@ const Projects = () => {
   const [countProjects, setCountProjects] = React.useState<number>(
     data?.meta?.pagination.total
   );
+  const lang = useAppSelector((state :RootState) => state.language.lang)
+
+  React.useEffect(() => {
+    setCountProjects(data?.meta?.pagination.total);
+  }, [data?.meta?.pagination.total]);
 
   /////////// Handler ///////////
   const filteringCategory = (nameCategory: string) => {
@@ -71,16 +78,16 @@ const Projects = () => {
                 loading="lazy"
                 src={`http://localhost:1337/${project.image.url}`}
                 alt="image"
-                className="w-[100%] h-[250px] rounded-2xl duration-300 hover:duration-300 hover:scale-110"
+                className="w-[100%] h-[250px] rounded-2xl duration-500 hover:duration-500 hover:scale-110"
               />
-              <div className="card__data w-[90%] bg-foreground py-1 px-2 md:py-3 md:px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500">
-                <h2 className="text-md font-medium text-background ml-3 mb-1">
+              <div className="card__data w-[90%] bg-background text-center py-1 px-2 md:py-3 md:px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500">
+                <h2 className="text-lg font-medium  ml-3 mb-1">
                   {project.title}
                 </h2>
                 <Link href={project.demo}>
                   <Button
                     variant={"link"}
-                    className="text-muted hover:text-primary"
+                    className="text-primary/80 hover:text-primary"
                   >
                     View Demo
                     <Code className="ms-1" size={15} />
@@ -89,7 +96,7 @@ const Projects = () => {
                 <Link href={project.codeView}>
                   <Button
                     variant={"link"}
-                    className="text-muted hover:text-primary"
+                    className="text-primary/80 hover:text-primary"
                   >
                     View Code
                     <Eye className="ms-1" size={15} />
@@ -161,9 +168,9 @@ const Projects = () => {
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center text:xl md:text-2xl mb-20 w-[7.25rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+          className="text-center text:xl md:text-2xl mb-20 w-fit px-4 mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
         >
-          Projects
+           {lang == "English" ? "Projects" : "المشاريع"}
         </motion.div>
 
         <motion.div
@@ -195,7 +202,7 @@ const Projects = () => {
                     <CarouselNext className="border-2 border-primary" />
                   </div>
                   <h3 className="pl-5 text-muted-foreground text-sm">
-                    Total Projects Is : {countProjects}
+                    {lang == "English" ? "Total Projects Is :" : " مجموع المشاريع :"} {countProjects}
                   </h3>
                 </Carousel>
               )

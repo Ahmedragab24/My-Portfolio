@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "next/navigation";
 import {
   useGetOneProjectQuery,
   useGetProjectsQuery,
-} from "@/store/features/api/apiSlice";
+} from "@/store/api/apiSlice";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -49,15 +49,15 @@ const Project = () => {
               </p>
 
               <div className="space-x-5">
-                <Link href={`${data?.data?.codeView}`}>
+                <Link href={`${data?.data?.codeView}`} target="_blank">
                   <Button>
                     Code View <Code className="ms-1" size={15} />
                   </Button>
                 </Link>
 
-                <Link href={`${data?.data?.demo}`}>
+                <Link href={`${data?.data?.demo}`} target="_blank">
                   <Button>
-                    View Code
+                    View Demo
                     <Eye className="ms-1" size={15} />
                   </Button>
                 </Link>

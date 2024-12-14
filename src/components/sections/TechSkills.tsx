@@ -9,8 +9,12 @@ import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import HtmlIcon from "@mui/icons-material/Html";
 import CssIcon from "@mui/icons-material/Css";
 import { motion } from "framer-motion";
+import { useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
 
 const TechSkills = () => {
+  const lang = useAppSelector((state: RootState) => state.language.lang);
+
   return (
     <section
       className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
@@ -21,9 +25,9 @@ const TechSkills = () => {
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center text:xl md:text-2xl mb-20 w-[12rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+          className="text-center text:xl md:text-2xl mb-20 w-fit px-4 mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
         >
-          Technical Skills
+           {lang == "English" ? "Technical Skills" : "المهارات التقنية"}
         </motion.div>
         <div className="flex flex-col justify-center gap-y-12 items-center md:flex-row  md:justify-between">
           <motion.div

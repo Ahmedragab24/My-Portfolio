@@ -16,49 +16,8 @@ import { ModeToggle } from "../ui/modeToggle";
 import Link from "next/link";
 import Fade from "@mui/material/Fade";
 import CodeOffIcon from "@mui/icons-material/CodeOff";
-
-interface Menu {
-  Title: string;
-  Url: string;
-}
-
-const MenuLink: Menu[] = [
-  {
-    Title: "Home",
-    Url: "./",
-  },
-  {
-    Title: "About me",
-    Url: "./about",
-  },
-  {
-    Title: "Contact Me",
-    Url: "./#Contact",
-  },
-];
-
-const NavLink: Menu[] = [
-  {
-    Title: "Technical Skills",
-    Url: "./#TechSkills",
-  },
-  {
-    Title: "Soft Skills",
-    Url: "./#SoftSkills",
-  },
-  {
-    Title: "Projects",
-    Url: "./#Projects",
-  },
-  {
-    Title: "Educations",
-    Url: "./#Education",
-  },
-  {
-    Title: "Experience",
-    Url: "./#Experience",
-  },
-];
+import { MenuLink, NavLink } from "@/constants";
+import SelectLang from "../ui/selectLang";
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -236,7 +195,10 @@ function NavBar() {
             </Menu>
           </Box>
 
-          <ModeToggle />
+          <div className="flex items-center gap-x-3">
+            <SelectLang />
+            <ModeToggle />
+          </div>
         </Toolbar>
       </Container>
     </AppBar>

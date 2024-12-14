@@ -23,8 +23,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { motion } from "framer-motion";
+import { RootState } from "@/store/store";
+import { useAppSelector } from "@/store/hooks";
 
 const SoftSkills = () => {
+  const lang = useAppSelector((state: RootState) => state.language.lang);
+
   return (
     <section
       className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
@@ -35,9 +39,9 @@ const SoftSkills = () => {
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center text:xl md:text-2xl mb-20 w-[9rem] mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+          className="text-center text:xl md:text-2xl mb-20 w-fit px-4 mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
         >
-          Soft Skills
+          {lang == "English" ? "Soft Skills" : "المهارات الشخصية"}
         </motion.div>
 
         <div className="flex justify-center items-center text-center">
@@ -54,25 +58,32 @@ const SoftSkills = () => {
                     <AlertDialogTrigger>
                       <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <Handshake className="mx-2" />
-                        Effective Communication
+                        {lang == "English"
+                          ? "Effective Communication"
+                          : "التواصل الفعال"}
                       </h2>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>
                           <Handshake className="mx-2 inline" />
-                          Effective Communication
+                          {lang == "English"
+                            ? "Effective Communication"
+                            : "التواصل الفعال"}
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                          The ability to clearly articulate ideas and
-                          suggestions, whether in writing or orally. Ability to
-                          actively listen and understand customer and team
-                          members&apos; requirements.
+                          {lang == "English"
+                            ? "The ability to clearly articulate ideas and suggestions, whether in writing or orally. Ability to actively listen and understand customer and team members&apos; requirements."
+                            : "القدرة على التعبير بوضوح عن الأفكار والاقتراحات، سواء كتابيًا أو شفويًا. القدرة على الاستماع بشكل نشط وفهم متطلبات العملاء وأعضاء الفريق."}
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
+                        <AlertDialogCancel>
+                          {lang == "English" ? "Cancel" : "ألغاء"}
+                        </AlertDialogCancel>
+                        <AlertDialogAction>
+                          {lang == "English" ? "Continue" : "حسناً"}
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
@@ -81,24 +92,32 @@ const SoftSkills = () => {
                     <AlertDialogTrigger>
                       <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <GroupsIcon className="mx-2" />
-                        Teamwork & collaboration
+                        {lang == "English"
+                          ? "Teamwork & collaboration"
+                          : "العمل الجماعي والتعاون"}
                       </h2>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>
                           <GroupsIcon className="mx-2" />
-                          Teamwork & collaboration
+                          {lang == "English"
+                            ? "Teamwork & collaboration"
+                            : "العمل الجماعي والتعاون"}
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                          Ability to work effectively with other developers,
-                          designers, and project managers. Understand the
-                          importance of cooperation in achieving common goals.
+                          {lang == "English"
+                            ? "Ability to work effectively with other developers, designers, and project managers. Understand the importance of cooperation in achieving common goals."
+                            : "القدرة على العمل بفعالية مع المطورين والمصممين ومديري المشاريع الآخرين. فهم أهمية التعاون في تحقيق الأهداف المشتركة."}
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
+                        <AlertDialogCancel>
+                          {lang == "English" ? "Cancel" : "ألغاء"}
+                        </AlertDialogCancel>
+                        <AlertDialogAction>
+                          {lang == "English" ? "Continue" : "حسناً"}
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
@@ -126,25 +145,30 @@ const SoftSkills = () => {
                       <AlertDialogTrigger>
                         <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <Bug className="mx-2" />
-                          Problem Solving
+                          {lang == "English" ? "Problem Solving" : "حل المشاكل"}
                         </h2>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
                           <AlertDialogTitle>
                             <Bug className="mx-2 inline" />
-                            Problem Solving
+                            {lang == "English"
+                              ? "Problem Solving"
+                              : "حل المشاكل"}
                           </AlertDialogTitle>
                           <AlertDialogDescription>
-                            Critical and analytical thinking to deal with
-                            programming challenges and unexpected problems.
-                            Ability to research and discover appropriate
-                            solutions when faced with technical obstacles.
+                            {lang == "English"
+                              ? "Critical and analytical thinking to deal with programming challenges and unexpected problems. Ability to research and discover appropriate solutions when faced with technical obstacles."
+                              : "التفكير النقدي والتحليلي للتعامل مع تحديات البرمجة والمشكلات غير المتوقعة. القدرة على البحث واكتشاف الحلول المناسبة عند مواجهة العقبات التقنية."}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction>Continue</AlertDialogAction>
+                          <AlertDialogCancel>
+                            {lang == "English" ? "Cancel" : "ألغاء"}
+                          </AlertDialogCancel>
+                          <AlertDialogAction>
+                            {lang == "English" ? "Continue" : "حسناً"}
+                          </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
@@ -161,24 +185,33 @@ const SoftSkills = () => {
                       <AlertDialogTrigger className="px-14">
                         <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <AvTimerIcon className="mx-2" />
-                          Time management
+                          {lang == "English"
+                            ? "Time management"
+                            : "إدارة الوقت"}
                         </h2>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
                           <AlertDialogTitle>
                             <AvTimerIcon className="mx-2" />
-                            Time management
+                            Time management{" "}
+                            {lang == "English"
+                              ? "Time management"
+                              : "إدارة الوقت"}
                           </AlertDialogTitle>
                           <AlertDialogDescription>
-                            Ability to effectively manage time to meet
-                            deadlines. Priority in distributing tasks and
-                            working on the most important tasks first.
+                            {lang == "English"
+                              ? "Ability to effectively manage time to meet deadlines. Priority in distributing tasks and working on the most important tasks first."
+                              : "القدرة على إدارة الوقت بشكل فعال لتلبية المواعيد النهائية. الأولوية في توزيع المهام والعمل على المهام الأكثر أهمية أولاً."}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction>Continue</AlertDialogAction>
+                          <AlertDialogCancel>
+                            {lang == "English" ? "Cancel" : "ألغاء"}
+                          </AlertDialogCancel>
+                          <AlertDialogAction>
+                            {lang == "English" ? "Continue" : "حسناً"}
+                          </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
@@ -391,26 +424,32 @@ const SoftSkills = () => {
                       <AlertDialogTrigger>
                         <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <LocalLibraryIcon className="mx-2" />
-                          Continuous Learning
+                          {lang == "English"
+                            ? "Continuous Learning"
+                            : "التعلم المستمر"}
                         </h2>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
                           <AlertDialogTitle>
                             <LocalLibraryIcon className="mx-2" />
-                            Continuous Learning
+                            {lang == "English"
+                              ? "Continuous Learning"
+                              : "التعلم المستمر"}
                           </AlertDialogTitle>
                           <AlertDialogDescription>
-                            Passion for learning new technologies and keeping
-                            abreast of continuous updates in the field of web
-                            development. Prepare to continuously develop your
-                            skills and follow the latest trends in front-end
-                            development.
+                            {lang == "English"
+                              ? "Passion for learning new technologies and keeping abreast of continuous updates in the field of web development. Prepare to continuously develop your skills and follow the latest trends in front-end development."
+                              : "الشغف بتعلم التقنيات الجديدة ومواكبة التحديثات المستمرة في مجال تطوير الويب. الاستعداد لتطوير مهاراتك باستمرار ومتابعة أحدث الاتجاهات في تطوير الواجهة الأمامية."}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction>Continue</AlertDialogAction>
+                          <AlertDialogCancel>
+                            {lang == "English" ? "Cancel" : "ألغاء"}
+                          </AlertDialogCancel>
+                          <AlertDialogAction>
+                            {lang == "English" ? "Continue" : "حسناً"}
+                          </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
@@ -427,24 +466,32 @@ const SoftSkills = () => {
                       <AlertDialogTrigger className="px-14">
                         <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                           <SettingsSuggestIcon className="mx-2" />
-                          Attention To Detail
+                          {lang == "English"
+                            ? "Attention To Detail"
+                            : "الاهتمام بالتفاصيل"}
                         </h2>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
                           <AlertDialogTitle>
                             <SettingsSuggestIcon className="mx-2" />
-                            Attention To Detail
+                            {lang == "English"
+                              ? "Attention To Detail"
+                              : "الاهتمام بالتفاصيل"}
                           </AlertDialogTitle>
                           <AlertDialogDescription>
-                            Ability to detect small errors that may affect the
-                            user experience. Ensure that high quality and
-                            flawless work is provided.
+                            {lang == "English"
+                              ? "Ability to detect small errors that may affect the user experience. Ensure that high quality and flawless work is provided."
+                              : "القدرة على اكتشاف الأخطاء الصغيرة التي قد تؤثر على تجربة المستخدم. تأكد من تقديم عمل عالي الجودة وخالٍ من العيوب."}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction>Continue</AlertDialogAction>
+                          <AlertDialogCancel>
+                            {lang == "English" ? "Cancel" : "ألغاء"}
+                          </AlertDialogCancel>
+                          <AlertDialogAction>
+                            {lang == "English" ? "Continue" : "حسناً"}
+                          </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
@@ -465,24 +512,32 @@ const SoftSkills = () => {
                     <AlertDialogTrigger>
                       <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <InsightsIcon className="mx-2" />
-                        Resilience & Adaptation
+                        {lang == "English"
+                          ? "Resilience & Adaptation"
+                          : "المرونة والتكيف"}
                       </h2>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>
                           <InsightsIcon className="mx-2" />
-                          Resilience & Adaptation
+                          {lang == "English"
+                            ? "Resilience & Adaptation"
+                            : "المرونة والتكيف"}
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                          Ability to adapt to changes in projects or tools used.
-                          Willingness to work in changing environments and
-                          handle diverse tasks.
+                          {lang == "English"
+                            ? "Ability to adapt to changes in projects or tools used. Willingness to work in changing environments and handle diverse tasks."
+                            : "القدرة على التكيف مع التغيرات في المشاريع أو الأدوات المستخدمة. الاستعداد للعمل في بيئات متغيرة والتعامل مع مهام متنوعة."}
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
+                        <AlertDialogCancel>
+                          {lang == "English" ? "Cancel" : "ألغاء"}
+                        </AlertDialogCancel>
+                        <AlertDialogAction>
+                          {lang == "English" ? "Continue" : "حسناً"}
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
@@ -491,24 +546,32 @@ const SoftSkills = () => {
                     <AlertDialogTrigger>
                       <h2 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-primary px-4 py-2 duration-300 hover:duration-300">
                         <EmojiObjectsIcon className="mx-2" />
-                        Creativity & Excellence
+                        {lang == "English"
+                          ? "Creativity and Excellence"
+                          : "الإبداع والتميز"}
                       </h2>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>
                           <EmojiObjectsIcon className="mx-2" />
-                          Creativity & Excellence
+                          {lang == "English"
+                            ? "Creativity and Excellence"
+                            : "الإبداع والتميز"}
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                          Ability to think outside the box and provide
-                          innovative solutions. Develop attractive user
-                          interfaces that are simple to use.
+                          {lang == "English"
+                            ? "Ability to think outside the box and provide innovative solutions. Develop attractive user interfaces that are simple to use."
+                            : "القدرة على التفكير خارج الصندوق وتقديم حلول مبتكرة. تطوير واجهات مستخدم جذابة وسهلة الاستخدام."}
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
+                        <AlertDialogCancel>
+                          {lang == "English" ? "Cancel" : "ألغاء"}
+                        </AlertDialogCancel>
+                        <AlertDialogAction>
+                          {lang == "English" ? "Continue" : "حسناً"}
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>

@@ -9,32 +9,53 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import { Button } from "@/components/ui/button";
-import DownloadingIcon from "@mui/icons-material/Downloading";
 import { motion } from "framer-motion";
+import { aboutMe } from "@/constants";
+import { NotepadText } from "lucide-react";
+import { useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
 
 const Hero = () => {
+  const {
+    title,
+    description,
+    name,
+    position,
+    arabicTitle,
+    arabicPsition,
+    arabicName,
+    arabicDescription,
+  } = aboutMe;
+  const lang = useAppSelector((state: RootState) => state.language.lang);
+
   return (
     <section
       className="border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
       id="home"
+      dir={lang == "English" ? "ltr" : "rtl"}
     >
       <div className="container flex flex-col-reverse md:flex-row md:items-center md:justify-between md:h-[89vh]">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col space-y-2 text-center md:text-left"
+          className={`flex flex-col space-y-2 text-center ${lang == "English" ? "md:text-left" : "md:text-start"}`}
           data-aos="fade-up"
         >
           <div className="home--data">
-            <h3 className="text-xl lg:text-2xl">Hello,</h3>
+            <h3 className="text-xl lg:text-2xl">
+              {lang == "English" ? title : arabicTitle}
+            </h3>
 
-            <div className="flex space-x-3 py-2 text-xl lg:text-3xl font-bold justify-center md:justify-start items-center">
-              <h1>I&apos;m</h1>
+            <div className="flex gap-3 py-2 text-xl lg:text-3xl font-bold justify-center md:justify-start items-center">
+              <h1>{lang == "English" ? "I'm" : "أنا"}</h1>
               <div className="text-primary">
                 <Typewriter
                   options={{
-                    strings: ["Eng-Ahmed Ragab", "Front-end Developer"],
+                    strings: [
+                      lang == "English" ? name : arabicName,
+                      lang == "English" ? position : arabicPsition,
+                    ],
                     autoStart: true,
                     delay: 100,
                     loop: true,
@@ -43,43 +64,54 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="text-muted-foreground text-sm font-light lg:text-xl lg:w-[80%]">
-              I am a strong communicator and a collaborative team player and
-              enjoy working in a fast-paced environment. I am also comfortable
-              working independently and taking ownership of projects. I am
-              constantly seeking new challenges and opportunities to learn and
-              grow as a software engineer.
+            <p className="text-muted-foreground text-sm font-light lg:text-lg lg:w-[80%]">
+              {lang == "English" ? description : arabicDescription}
             </p>
 
-            <div className="flex space-x-2 justify-center items-center md:justify-start my-4">
-              <Button>
-                Download CV <DownloadingIcon className="ms-2 text-[1rem]" />
+            <div className="flex gap-2 justify-center items-center md:justify-start my-4">
+              <Button
+                size={"lg"}
+                onClick={() => window.open("/CV/Ahmed Ragab.pdf", "_blank")}
+              >
+                {lang == "English" ? "View CV" : "عرض السيرة الذاتية"} <NotepadText size={15} className="ms-2" />
               </Button>
-              <Button variant={"ghost"} className="flex items-center space-x-2">
-                <Link href={"/#About"}>More me</Link>
+              <Button variant={"ghost"} className="flex items-center gap-2">
+                <Link href={"/#About"}>{lang == "English" ? "More Info" : "المزيد من المعلومات"}</Link>
                 <HorizontalRuleIcon fontSize="medium" />
               </Button>
             </div>
           </div>
 
-          <div className="flex justify-center md:justify-start space-x-3 !mb-4">
-            <Link href="./">
+          <div className="flex justify-center md:justify-start gap-3 !mb-4">
+            <Link
+              href="https://www.facebook.com/EngAhmedRagab24/"
+              target="_blank"
+            >
               <FacebookOutlinedIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
             </Link>
 
-            <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+            <Link
+              href="https://api.whatsapp.com/send?phone=201228317491&text=Hello, more information!"
+              target="_blank"
+            >
               <WhatsAppIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
             </Link>
 
-            <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+            <Link
+              href="https://www.linkedin.com/in/ahmed-ragab-558a31209"
+              target="_blank"
+            >
               <LinkedInIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
             </Link>
 
-            <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+            <Link href="https://github.com/Ahmedragab24" target="_blank">
               <GitHubIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
             </Link>
 
-            <Link href="https://api.whatsapp.com/send?phone=0546965474&text=Hello, more information!">
+            <Link
+              href="mailto:ahmedkavo17@gmail.com?subject=Subject%20Here&body=Message%20content%20here"
+              target="_blank"
+            >
               <EmailIcon className="text-muted-foreground duration-200 hover:duration-200 hover:text-primary hover:translate-y-[-2px]" />
             </Link>
           </div>

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiSlice } from "./features/api/apiSlice";
+import { apiSlice } from "./api/apiSlice";
+import languageReducer from "./features/Language/languageSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
+      language: languageReducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
     },
     middleware: (getDefultMiddleware) =>

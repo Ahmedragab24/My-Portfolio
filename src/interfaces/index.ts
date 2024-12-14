@@ -1,5 +1,9 @@
-import { SerializedError } from "@reduxjs/toolkit";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { ReactNode } from "react";
+
+export interface Menu {
+  Title: string;
+  Url: string;
+}
 
 export interface Iproject {
   documentId?: string;
@@ -26,4 +30,15 @@ export interface Iproject {
 export interface ICategories {
   id: string;
   title: string;
+}
+
+export interface Step {
+  title: string;
+  history: string;
+  description: string;
+  arabicTitle: string;
+  arabicHistory: string;
+  arabicDescription: string;
+  icon: ReactNode;
+  link: string;
 }
