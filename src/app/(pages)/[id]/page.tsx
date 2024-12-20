@@ -1,11 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import {
-  useGetOneProjectQuery,
-  useGetProjectsQuery,
-} from "@/store/api/apiSlice";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -19,43 +15,56 @@ import {
 } from "@/components/ui/carousel";
 import { Iproject } from "@/interfaces";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getData, getProjectById } from "@/utils/appwrite";
 
 const Project = () => {
   const { id } = useParams();
-  const { isLoading, isError, isSuccess, data, error } =
-    useGetOneProjectQuery(id);
+  const [project, setProject] = useState<Iproject | null>(null);
+  const [allProjects, setAllProjects] = useState<Iproject[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const { data: dataAll } = useGetProjectsQuery("");
+  useEffect(() => {
+    const fetchProjectData = async () => {
+      setIsLoading(true);
+      try {
+        const [fetchedProject, fetchedAllProjects] = await Promise.all([
+          getProjectById(String(id)),
+          getData(),
+        ]);
+        setProject(fetchedProject as unknown as Iproject);
+        setAllProjects(fetchedAllProjects as unknown as Iproject[]);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  console.log(data);
-
-  const errorMessage =
-    (error as { message?: string })?.message ||
-    (error as { error?: string })?.error ||
-    "Unknown error";
+    fetchProjectData();
+  }, [id]);
 
   return (
     <main className="py-16 overflow-hidden">
       <section className="container">
-        {isError && <div> {errorMessage}</div>}
-        {isSuccess && isLoading == false && (
+        {!isLoading && (
           <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-10 relative z-10">
             <div className="w-[50%] space-y-8">
               <h2 className="text-2xl w-fit pb-2 px-4 border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]">
-                {data?.data?.title}
+                {project?.title}
               </h2>
               <p className="text-sm text-muted-foreground">
-                {data?.data?.description}
+                {project?.description}
               </p>
 
               <div className="space-x-5">
-                <Link href={`${data?.data?.codeView}`} target="_blank">
+                <Link href={`${project?.githubLink}`} target="_blank">
                   <Button>
                     Code View <Code className="ms-1" size={15} />
                   </Button>
                 </Link>
 
-                <Link href={`${data?.data?.demo}`} target="_blank">
+                <Link href={`${project?.DemoLink}`} target="_blank">
                   <Button>
                     View Demo
                     <Eye className="ms-1" size={15} />
@@ -69,7 +78,7 @@ const Project = () => {
                 width={600}
                 height={350}
                 loading="lazy"
-                src={`http://localhost:1337/${data?.data?.image?.url}`}
+                src={`${project?.image}`}
                 alt="image"
                 className="card__img w-[400px] md:w-[620px] h-[350px] rounded-xl duration-300 hover:duration-300 hover:scale-105"
               />
@@ -111,20 +120,19 @@ const Project = () => {
               <Minus size={40} />
             </div>
             <CarouselContent className="py-5 px-2">
-              {isSuccess &&
-                isLoading == false &&
-                dataAll?.data.map((item: Iproject) => (
+              {!isLoading &&
+                allProjects?.map((item: Iproject) => (
                   <CarouselItem
-                    key={item.id}
+                    key={item.$id}
                     className="md:basis-1/2 lg:basis-1/3"
                   >
-                    <Link href={`/${item.documentId}`}>
+                    <Link href={`/${item.$id}`}>
                       <article className="card__article relative overflow-hidden rounded-2xl duration-500 cursor-pointer">
                         <Image
                           width={280}
                           height={280}
                           loading="lazy"
-                          src={`http://localhost:1337/${item.image.url}`}
+                          src={`${item.image}`}
                           alt="image"
                           className="w-[100%] md:w-[420px] h-[250px] rounded-2xl duration-300 hover:duration-300 hover:scale-105"
                         />
@@ -132,7 +140,7 @@ const Project = () => {
                           <h2 className="text-md font-medium text-background ml-3 mb-1">
                             {item.title}
                           </h2>
-                          <Link href={item.demo}>
+                          <Link href={item.DemoLink}>
                             <Button
                               variant={"link"}
                               className="text-muted hover:text-primary"
@@ -141,7 +149,7 @@ const Project = () => {
                               <Code className="ms-1" size={15} />
                             </Button>
                           </Link>
-                          <Link href={item.codeView}>
+                          <Link href={item.githubLink}>
                             <Button
                               variant={"link"}
                               className="text-muted hover:text-primary"

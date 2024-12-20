@@ -1,17 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiSlice } from "./api/apiSlice";
 import languageReducer from "./features/Language/languageSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       language: languageReducer,
-      [apiSlice.reducerPath]: apiSlice.reducer,
     },
-    middleware: (getDefultMiddleware) =>
-      getDefultMiddleware().concat(apiSlice.middleware),
-  });
-};
+
+  })
+}
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<AppStore["getState"]>;

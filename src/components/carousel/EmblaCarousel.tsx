@@ -37,15 +37,15 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((project) => (
-            <div className="embla__slide" key={project.id}>
+            <div className="embla__slide" key={project.$id}>
               <div className="embla__slide__number">
-                <Link href={`/${project.documentId}`} key={project.id}>
+                <Link href={`/${project.$id}`} key={project.$id}>
                   <article className="card__article relative overflow-hidden rounded-2xl duration-500 cursor-pointer m-4">
                     <Image
                       width={420}
                       height={250}
                       loading="lazy"
-                      src={`http://localhost:1337/${project.image.url}`}
+                      src={`${project.image}`}
                       alt="image"
                       className="w-[100%] h-[250px] rounded-2xl"
                     />
@@ -53,7 +53,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                       <h2 className="text-md font-medium text-background ml-3 mb-1">
                         {project.title}
                       </h2>
-                      <Link href={project.demo}>
+                      <Link href={project.DemoLink}>
                         <Button
                           variant={"link"}
                           className="text-muted hover:text-primary"
@@ -62,7 +62,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                           <Code className="ms-1" size={15} />
                         </Button>
                       </Link>
-                      <Link href={project.codeView}>
+                      <Link href={project.githubLink}>
                         <Button
                           variant={"link"}
                           className="text-muted hover:text-primary"

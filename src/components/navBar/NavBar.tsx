@@ -61,7 +61,7 @@ function NavBar() {
               color: "inherit",
             }}
           >
-            Ahmed
+            Ahmed Elmadany
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -129,6 +129,7 @@ function NavBar() {
                 open={open}
                 onClose={handleClose}
                 TransitionComponent={Fade}
+                sx={{backgroundColor: "primary"}}
               >
                 {NavLink.map(({ Title, Url }) => (
                   <MenuItem onClick={handleClose} key={Title}>

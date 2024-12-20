@@ -5,31 +5,23 @@ export interface Menu {
   Url: string;
 }
 
-export interface Iproject {
-  documentId?: string;
-  id: string;
+export interface Iproject {  
+  $id?: string;
   title: string;
   description: string;
-  image: {
-    url: string;
-  };
-  demo: string;
-  codeView: string;
+  image: string;
+  DemoLink: string;
+  githubLink: string;
   categories?: [
     {
-      title: string;
-    }
-  ];
-  imagesGroup: [
-    {
-      url: string;
+      name: string;
     }
   ];
 }
 
 export interface ICategories {
   id: string;
-  title: string;
+  name: string;
 }
 
 export interface Step {

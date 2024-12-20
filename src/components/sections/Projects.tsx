@@ -6,12 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eye, Code } from "lucide-react";
 import { ICategories, Iproject } from "@/interfaces";
-import {
-  useGetCategoriesQuery,
-  useGetProjectsQuery,
-} from "@/store/api/apiSlice";
 import { Skeleton } from "@/components/ui/skeleton";
-import ErrorMessage from "../ui/ErrorMessage";
 import {
   Carousel,
   CarouselContent,
@@ -22,86 +17,144 @@ import {
 import { motion } from "framer-motion";
 import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
+import { getCategories, getData } from "@/utils/appwrite";
 
 const Projects = () => {
-  const { isLoading, isSuccess, isError, error, data } =
-    useGetProjectsQuery("");
-  const {
-    isSuccess: isSuccessCat,
-    isError: isErrorCat,
-    error: errorCat,
-    isLoading: isloadingCat,
-    data: dataCat,
-  } = useGetCategoriesQuery("");
-
-  const [filteredProjects, setFilteredProjects] = React.useState<
-    Iproject[] | null
-  >();
   const [active, setActive] = React.useState("All");
-  const [countProjects, setCountProjects] = React.useState<number>(
-    data?.meta?.pagination.total
-  );
-  const lang = useAppSelector((state :RootState) => state.language.lang)
+  const [data, setData] = React.useState<Iproject[]>([]);
+  const [filteredProjects, setFilteredProjects] = React.useState<Iproject[]>([]);
+  const [categories, setCategories] = React.useState<ICategories[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const lang = useAppSelector((state: RootState) => state.language.lang);
 
   React.useEffect(() => {
-    setCountProjects(data?.meta?.pagination.total);
-  }, [data?.meta?.pagination.total]);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const [projects, projectCategories] = await Promise.all([
+          getData(),
+          getCategories(),
+        ]);
 
-  /////////// Handler ///////////
-  const filteringCategory = (nameCategory: string) => {
-    const filtered = data?.data.filter(
-      (item: Iproject & { categories: { title: string }[] }) =>
-        item.categories[0]?.title === nameCategory ||
-        item.categories[1]?.title === nameCategory
-    );
+        if (projects) {
+          setData(projects as unknown as Iproject[]);
+          setFilteredProjects(projects as unknown as Iproject[]);
+        } else {
+          setError("Failed to fetch projects");
+        }
+        setCategories([...projectCategories]);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : String(error));
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    setFilteredProjects(filtered);
-    setActive(nameCategory);
-    setCountProjects(filtered.length);
+    fetchData();
+  }, []);
+
+  const handleFilter = (category: string) => {
+    setActive(category);
+
+    if (category === "All") {
+      setFilteredProjects(data);
+    } else {
+      setFilteredProjects(
+        data.filter((project) =>
+          project.categories?.some((cat) => cat.name === category)
+        )
+      );
+    }
   };
 
-  /////////// Rendering ///////////
-  const rendererProjects = () => {
-    const projectsToRender = filteredProjects || data?.data;
-    return projectsToRender.map((project: Iproject) => (
-      <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3 ">
+  const renderCategories = () => {
+    if (isLoading) {
+      return (
+        <ul className="flex justify-center gap-x-4">
+          {[...Array(4)].map((_, index) => (
+            <li key={index}>
+              <Skeleton className="h-10 w-20 md:w-28" />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    if (error) {
+      return <p className="text-center text-red-500">{error}</p>;
+    }
+
+    return (
+      <ul className="flex justify-center gap-x-4">
+        {categories.map((category) => (
+          <li key={category.id}>
+            <Button
+              variant={category.name === active ? "default" : "secondary"}
+              size="sm"
+              className="text-xs md:text-sm"
+              onClick={() => handleFilter(category.name)}
+            >
+              {category.name}
+            </Button>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  const renderProjects = () => {
+    if (isLoading) {
+      return (
+        <Skeleton className="w-[300px] md:w-[420px] h-[250px] mx-auto rounded-2xl" />
+      );
+    }
+
+    if (error) {
+      return <p className="text-center text-red-500">{error}</p>;
+    }
+
+    return filteredProjects.map((project) => (
+      <CarouselItem key={project.$id} className="md:basis-1/2 lg:basis-1/3">
         <motion.div
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Link href={`/${project.documentId}`}>
-            <article className="card__article relative overflow-hidden rounded-2xl duration-500 cursor-pointer m-4">
+          <Link href={`/${project.$id}`}>
+            <article className="card__article relative m-4 overflow-hidden rounded-2xl duration-500 cursor-pointer">
               <Image
                 width={420}
                 height={250}
                 loading="lazy"
-                src={`http://localhost:1337/${project.image.url}`}
-                alt="image"
-                className="w-[100%] h-[250px] rounded-2xl duration-500 hover:duration-500 hover:scale-110"
+                src={project.image}
+                alt={project.title}
+                className="w-full h-[250px] rounded-2xl duration-500 hover:scale-110"
               />
-              <div className="card__data w-[90%] bg-background text-center py-1 px-2 md:py-3 md:px-4 shadow-2xl rounded-2xl absolute bottom-0 left-0 right-0 mx-auto opacity-0 duration-500">
-                <h2 className="text-lg font-medium  ml-3 mb-1">
-                  {project.title}
-                </h2>
-                <Link href={project.demo}>
-                  <Button
-                    variant={"link"}
-                    className="text-primary/80 hover:text-primary"
-                  >
-                    View Demo
-                    <Code className="ms-1" size={15} />
-                  </Button>
-                </Link>
-                <Link href={project.codeView}>
-                  <Button
-                    variant={"link"}
-                    className="text-primary/80 hover:text-primary"
-                  >
-                    View Code
-                    <Eye className="ms-1" size={15} />
-                  </Button>
-                </Link>
+              <div className="card__data absolute bottom-0 left-0 right-0 mx-auto w-[90%] bg-background text-center py-3 px-4 shadow-2xl rounded-2xl opacity-0 duration-500">
+                <h2 className="text-lg font-medium">{project.title}</h2>
+                {project.DemoLink && (
+                  <Link href={project.DemoLink} target="_blank">
+                    <Button
+                      variant="link"
+                      className="text-primary/80 hover:text-primary"
+                    >
+                      View Demo
+                      <Code className="ms-1" size={15} />
+                    </Button>
+                  </Link>
+                )}
+                {project.githubLink && (
+                  <Link href={project.githubLink} target="_blank">
+                    <Button
+                      variant="link"
+                      className="text-primary/80 hover:text-primary"
+                    >
+                      View Code
+                      <Eye className="ms-1" size={15} />
+                    </Button>
+                  </Link>
+                )}
               </div>
             </article>
           </Link>
@@ -110,67 +163,16 @@ const Projects = () => {
     ));
   };
 
-  const rendererCategories = () => {
-    if (isloadingCat) {
-      return (
-        <ul className="flex justify-center gap-x-2 md:gap-x-4">
-          <li>
-            <Skeleton className="h-10 w-[60px] md:w-[100px]" />
-          </li>
-          <li>
-            <Skeleton className="h-10 w-[60px] md:w-[100px]" />
-          </li>
-          <li>
-            <Skeleton className="h-10 w-[60px] md:w-[100px]" />
-          </li>
-          <li>
-            <Skeleton className="h-10 w-[60px] md:w-[100px]" />
-          </li>
-        </ul>
-      );
-    }
-
-    if (isSuccessCat && isLoading == false) {
-      return (
-        <ul className="flex  justify-center gap-x-2 md:gap-x-4">
-          {dataCat.data.map((category: ICategories) => (
-            <li key={category.id}>
-              {isSuccessCat && (
-                <Button
-                  variant={category.title == active ? "default" : "secondary"}
-                  size={"sm"}
-                  className="text-[.60rem] md:text-sm"
-                  onClick={() => filteringCategory(category.title)}
-                >
-                  {category.title}
-                </Button>
-              )}
-
-              {isErrorCat && (
-                <div className="text-center text-2xl">
-                  <ErrorMessage error={errorCat} />
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-  };
-
   return (
-    <section
-      className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem] overflow-hidden"
-      id="Projects"
-    >
+    <section className="py-28 border-b-4 border-primary rounded-br-[6rem] rounded-bl-[6rem]" id="Projects">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center text:xl md:text-2xl mb-20 w-fit px-4 mx-auto pb-1  border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
+          className="text-center text-xl md:text-2xl mb-20 w-fit px-4 mx-auto pb-1 border-b-2 border-primary rounded-br-[1rem] rounded-bl-[1rem]"
         >
-           {lang == "English" ? "Projects" : "المشاريع"}
+          {lang === "English" ? "Projects" : "المشاريع"}
         </motion.div>
 
         <motion.div
@@ -179,41 +181,19 @@ const Projects = () => {
           transition={{ duration: 0.5 }}
           className="flex flex-col gap-y-16"
         >
-          {rendererCategories()}
+          {renderCategories()}
 
-          <div className="flex flex-col md:flex-row justify-center xl:justify-evenly items-center flex-wrap gap-x-10 xl:gap-x-0 gap-y-10">
-            {isLoading ? (
-              <>
-                <Skeleton className="mx-auto w-[300px] md:w-[420px] h-[250px] rounded-2xl" />
-                <Skeleton className="mx-auto w-[300px] md:w-[420px] h-[250px] rounded-2xl" />
-                <Skeleton className="mx-auto w-[300px] md:w-[420px] h-[250px] rounded-2xl" />
-              </>
-            ) : (
-              isSuccess && (
-                <Carousel
-                  opts={{
-                    align: "start",
-                  }}
-                  className="w-full max-w-[350px] sm:max-w-[480px] md:max-w-full"
-                >
-                  <CarouselContent>{rendererProjects()}</CarouselContent>
-                  <div className="flex">
-                    <CarouselPrevious className="border-2 border-primary" />
-                    <CarouselNext className="border-2 border-primary" />
-                  </div>
-                  <h3 className="pl-5 text-muted-foreground text-sm">
-                    {lang == "English" ? "Total Projects Is :" : " مجموع المشاريع :"} {countProjects}
-                  </h3>
-                </Carousel>
-              )
-            )}
-
-            {isError && (
-              <div className="text-center text-2xl">
-                <ErrorMessage error={error} />
-              </div>
-            )}
-          </div>
+          <Carousel className="w-full max-w-[350px] sm:max-w-[480px] md:max-w-full">
+            <CarouselContent>{renderProjects()}</CarouselContent>
+            <div className="flex">
+              <CarouselPrevious className="border-2 border-primary" />
+              <CarouselNext className="border-2 border-primary" />
+            </div>
+            <h3 className="pl-5 text-muted-foreground text-sm">
+              {lang === "English" ? "Total Projects:" : "مجموع المشاريع:"}{" "}
+              {filteredProjects.length}
+            </h3>
+          </Carousel>
         </motion.div>
       </div>
     </section>
