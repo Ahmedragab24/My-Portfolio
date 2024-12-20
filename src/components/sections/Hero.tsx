@@ -10,7 +10,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { aboutMe } from "@/constants";
+import { aboutMe } from "@/constants/index";
 import { NotepadText } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";

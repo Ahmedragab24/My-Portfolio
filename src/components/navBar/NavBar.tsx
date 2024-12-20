@@ -17,7 +17,7 @@ import Link from "next/link";
 import Fade from "@mui/material/Fade";
 import CodeOffIcon from "@mui/icons-material/CodeOff";
 import { MenuLink, NavLink } from "@/constants";
-import SelectLang from "../ui/selectLang";
+import SelectLang from "@/components/ui/selectLang";
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(

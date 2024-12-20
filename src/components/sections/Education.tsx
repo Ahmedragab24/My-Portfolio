@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import { RootState } from "@/store/store";
 import { useAppSelector } from "@/store/hooks";
-import { steps } from "@/constants";
+import { steps } from "@/constants/index";
 
 const Education = () => {
   const lang = useAppSelector((state: RootState) => state.language.lang);
