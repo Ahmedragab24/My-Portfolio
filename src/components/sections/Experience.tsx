@@ -9,9 +9,9 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import { motion as m } from "framer-motion";
 import Link from "next/link";
-import { ExperienceData } from "@/constants/index";
 import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
+import { ExperienceData } from "@/constants";
 
 const Experience = () => {
   const lang = useAppSelector((state: RootState) => state.language.lang);

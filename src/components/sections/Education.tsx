@@ -12,7 +12,8 @@ import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import { RootState } from "@/store/store";
 import { useAppSelector } from "@/store/hooks";
-import { steps } from "@/constants/index";
+import { steps } from "@/constants";
+
 
 const Education = () => {
   const lang = useAppSelector((state: RootState) => state.language.lang);
